@@ -1,0 +1,23 @@
+<app-exibition-item [exibition]="exibition" [edit]="!edit" (editChange)="onEditChange()"></app-exibition-item>
+
+<div class="row" *ngIf="edit">
+    <div class="col">
+        <app-exibition-edit 
+            (onDone)="onDone()" 
+            [artworks]="filteredArtworks" 
+            [exibitionArtworks]="exibitionArtworks"
+            (onAdd)="onAddArtwork($event)" 
+            (onRemove)="onRemoveArtwork($event)"
+            (search)="onSearch($event)"></app-exibition-edit>
+    </div>
+</div>
+
+<div class="row" *ngIf="!edit">
+    <div class="col">
+        <div class="row">
+            <div class="col-6" *ngFor="let art of exibitionArtworks">
+                <app-artwork-item [artwork]="art"></app-artwork-item>
+            </div>
+        </div>
+    </div>
+</div>
